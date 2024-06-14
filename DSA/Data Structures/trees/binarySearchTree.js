@@ -46,16 +46,29 @@ class BinarySearchTree {
     }
     return false;
   }
+
+  breadthFirstSearch() {
+    let node = this.root,
+      data = [],
+      queue = [];
+
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return data;
+  }
 }
 
 const bst = new BinarySearchTree();
-bst.insert(10);
 bst.insert(5);
-bst.insert(16);
+bst.insert(3);
+bst.insert(7);
+bst.insert(2);
 bst.insert(4);
-bst.insert(13);
-bst.insert(9);
-bst.insert(11);
-bst.insert(17);
-bst.insert(10);
-console.log(bst);
+bst.insert(6);
+bst.insert(8);
+console.log(bst.breadthFirstSearch());
