@@ -38,3 +38,13 @@ storage - o(v + e) / o(v^2)
 - can take up less space sparce graph
 - faster to iterate over all edges
 - can be slower to lookup specific edge
+
+## traversal
+
+### depth first graph traversal
+
+choose a starting node and follow each neighbors' neighbor before backtracking the other neighbors of previous nodes.
+
+### breadth first graph traversal
+
+visit every neightbor of a given node that are at the same "height" (distance from starting node)
