@@ -2,6 +2,7 @@
 
 - built on top of ip and tcp.
 - request / response protocol
+- defines the format for clients and servers to speak to eachother
 - works best when dealing with stateless data. follows a request-response protocol. this approach lacks real time communication capabilities, ex: chat app - would require client to continually make request to server = overhead, not ideal.
 
 # client / server
