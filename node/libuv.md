@@ -18,27 +18,43 @@
 - a design pattern that orchestrates the execution of synchronous and asynchronous code in node
 - consists of:
   - **timer queue** - libuv
-    - setTimeout()
-    - setInterveral()
-    - callbacks
+    - not actually a queue, min-heap
+    - ex
+      - setTimeout()
+      - setInterveral()
   - **i/o queue** - libuv
     - i/o callbacks associated with async methods
+    - ex
+      - fs.readFile()
   - **check queue** - libuv
-    - setimmediate
+    - ex
+      - setImmediate()
   - **close queue** - libuv
     - callbacks associated with close event of an async task
+    - attach close event listeners to queue into the close queue
   - **micro task queue** - node runtime
     - **nextTick queue**
-      - process.nextTick callbacks
+      - process.nextTick()
     - **promise queue**
       - callbacks associated with native promises in js
-- priority
-  - user written synchronous js code takes priority over async code that the runtime executes
-  - within event loop
-    1. micro task queues (first nextTick queue, second promise queue)
-    2. timer queue
-    3. micro task queues (if present)
-    4. i/o queue
-    5. micro task queues (if present)
-    6. check queue
-    7. micro task queue (if present)
+
+### priority order:
+
+- user written synchronous js code takes priority over async code that the runtime executes
+- within event loop
+  1. micro task queues (if present)
+     1. nextTick queue
+     2. promise queue
+  2. timer queue
+  3. micro task queues (if present)
+     1. nextTick queue
+     2. promise queue
+  4. i/o queue
+  5. micro task queues (if present)
+     1. nextTick queue
+     2. promise queue
+  6. check queue
+  7. micro task queue (if present)
+     1. nextTick queue
+     2. promise queue
+  8. close queue
