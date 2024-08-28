@@ -11,7 +11,7 @@ function merge(arr1, arr2) {
   let i = 0;
   let j = 0;
   while (i < arr1.length && j < arr2.length) {
-    if (arr2[j] > arr1[i]) {
+    if (arr2[j] >= arr1[i]) {
       results.push(arr1[i]);
       i++;
     } else {
@@ -30,4 +30,4 @@ function merge(arr1, arr2) {
   return results;
 }
 
-console.log(mergeSort([3, 1, 5, 4, 2]));
+console.log(mergeSort([5, 2, 9, 1, 9, 7, 3]));

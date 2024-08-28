@@ -1,30 +1,30 @@
-function pivot(arr, start = 0, end = arr.length - 1) {
-  function swap(arr, i, j) {
-    let tmp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tmp;
-  }
-  let pivot = arr[start];
-  let swapIndex = start;
-  for (let i = start + 1; i < arr.length; i++) {
-    if (pivot > arr[i]) {
-      swapIndex++;
-      swap(arr, swapIndex, i);
+function quickSort(arr, s, e) {
+  // base case
+  if (s >= e) return;
+
+  let pivot = arr[e];
+  let left = s; // pointer for left side
+
+  // Partition: elements smaller than pivot on left side
+  for (let i = s; i < e; i++) {
+    if (arr[i] < pivot) {
+      [arr[left], arr[i]] = [arr[i], arr[left]];
+      left++;
     }
   }
 
-  swap(arr, start, swapIndex);
-  return swapIndex;
-}
+  // Move pivot in-between left & right sides
+  arr[e] = arr[left];
+  arr[left] = pivot;
 
-function quickSort(arr, left = 0, right = arr.length - 1) {
-  if(left < right) {
-    let pivotIndex = pivot(arr, left, right);
-    quickSort(arr, left, pivotIndex - 1);
-    quickSort(arr, pivotIndex + 1, right);
-  }
+  // Quick sort left side
+  quickSort(arr, s, left - 1);
+
+  // Quick sort right side
+  quickSort(arr, left + 1, e);
 
   return arr;
 }
 
-console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]));
+const arr = [4, 8, 2, 1, 5, 7, 6, 3];
+console.log(quickSort(arr, 0, arr.length - 1));
