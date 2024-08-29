@@ -1,0 +1,5 @@
+- o(n)
+- to be implimented, requires values to be in a specific range
+- create a 'bucket' and map each value to its respective bucket
+- a bucket is a psoition in a specified array
+  - contains frequencies of each one of the values within the range
